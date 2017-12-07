@@ -19,21 +19,34 @@ var HeroDetailComponent = (function () {
     }
     HeroDetailComponent.prototype.ngOnChanges = function () {
         this.heroForm.reset({
-            name: this.hero.name,
-            address: this.hero.addresses[0] || new data_model_1.Address()
+            name: this.hero.name
         });
-        this.heroForm.setValue({
-            name: this.hero.name,
-            address: this.hero.addresses[0] || new data_model_1.Address()
-        });
+        this.setAddresses(this.hero.addresses);
     };
     HeroDetailComponent.prototype.createForm = function () {
         this.heroForm = this.fb.group({
-            name: ['', forms_1.Validators.required],
-            address: this.fb.group(new data_model_1.Address()),
+            name: '',
+            secretLairs: this.fb.array([]),
             power: '',
             sidekick: '',
         });
+    };
+    HeroDetailComponent.prototype.setAddresses = function (addresses) {
+        var _this = this;
+        var addressFBs = addresses.map(function (address) { return _this.fb.group(address); });
+        var addressFormArray = this.fb.array(addressFBs);
+        this.heroForm.setControl('secretLairs', addressFormArray);
+    };
+    Object.defineProperty(HeroDetailComponent.prototype, "secretLairs", {
+        get: function () {
+            return this.heroForm.get('secretLairs');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    HeroDetailComponent.prototype.addLair = function () {
+        this.secretLairs.push(this.fb.group(new data_model_1.Address()));
     };
     return HeroDetailComponent;
 }());
