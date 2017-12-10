@@ -33,8 +33,8 @@ var HeroDetailComponent = (function () {
     };
     HeroDetailComponent.prototype.setAddresses = function (addresses) {
         var _this = this;
-        var addressFBs = addresses.map(function (address) { return _this.fb.group(address); });
-        var addressFormArray = this.fb.array(addressFBs);
+        var addressFGs = addresses.map(function (address) { return _this.fb.group(address); });
+        var addressFormArray = this.fb.array(addressFGs);
         this.heroForm.setControl('secretLairs', addressFormArray);
     };
     Object.defineProperty(HeroDetailComponent.prototype, "secretLairs", {

@@ -40,3 +40,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+reactive-form.iml
+src/app/*.js
+src/app/*.map

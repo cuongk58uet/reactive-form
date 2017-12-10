@@ -34,8 +34,8 @@ export class HeroDetailComponent implements OnChanges {
   }
 
   setAddresses(addresses: Address[]) {
-    const addressFBs = addresses.map(address => this.fb.group(address));
-    const addressFormArray = this.fb.array(addressFBs);
+    const addressFGs = addresses.map(address => this.fb.group(address));
+    const addressFormArray = this.fb.array(addressFGs);
     this.heroForm.setControl('secretLairs', addressFormArray);
   }
 
